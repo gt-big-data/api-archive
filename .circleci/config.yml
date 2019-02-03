@@ -42,10 +42,10 @@ workflows:
   version: 2
   calm-down:
     jobs:
-      -build
+      - build
       #   filters:
       #     branches:
       #       ignore: 
       #         - sheen
-      -test
+      - test
         
