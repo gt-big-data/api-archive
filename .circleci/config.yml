@@ -1,0 +1,11 @@
+version: 2
+workflows:
+  version: 2
+  calm-down:
+    jobs:
+      - build
+          filters:
+            branches:
+              ignore: 
+              -sheen
+        
