@@ -2,6 +2,38 @@ version: 2
 
 jobs: 
   build:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout #?
+      - setup_remote_docker
+          docker_layer_caching: true
+      - run:
+          name: install
+          command: apk update && apk add docker
+      - run: 
+          name: build/tag
+          command: docker build -t flasksrvr:first .
+      - run:
+          name: save
+          command: mkdir -p workspace && docker save flasksrvr:first > workspace/flasksrvr.tar
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - flasksrvr.tar
+  test:
+    docker:
+      - image: python:3.7-alpine
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: Run Tests
+          command: pytest -W ignore::DeprecationWarning
+      
+          
 
 workflows:
   version: 2
