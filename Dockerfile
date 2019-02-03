@@ -8,4 +8,4 @@ RUN
 
 CMD python /a/sth.py
 
-kaesjfhauyliaewfjihehiuf
+#kaesjfhauyliaewfjihehiuf
