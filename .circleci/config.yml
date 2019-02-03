@@ -28,7 +28,10 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: pip install -r requirements.txt
+          command: pip install flask flask-jsonpify flask-sqlalchemy flask-restful gunicorn
+      - run:
+          name: one more thing
+          command: pip install -U pytest
       - run:
           name: Run Tests
           command: pytest -W ignore::DeprecationWarning
@@ -38,10 +41,11 @@ jobs:
 workflows:
   version: 2
   calm-down:
-    jobs:
-      - build:
-          filters:
-            branches:
-              ignore: 
-                - sheen
+    jobs
+      -build
+      #   filters:
+      #     branches:
+      #       ignore: 
+      #         - sheen
+      -test
         
