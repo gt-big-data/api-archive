@@ -1,8 +1,8 @@
 FROM python:3.7-alpine AS base
 
-COPY
+COPY . /a
 
 RUN
 
-CMD
+CMD python /a/sth.py
 
