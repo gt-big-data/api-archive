@@ -1,14 +1,15 @@
-FROM python:3.7-alpine AS base
+FROM python:3.7-alpine
 
-COPY /a .
+# Copy the source code into the current dir
+COPY requirements.txt .
 
-RUN pip install flask flask-jsonpify flask-sqlalchemy flask-restful gunicorn
+# Install from the prod-requirements.txt and delete it from the image
+RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
 
+# Copy the srouce code over
+COPY src .
+
+# Expose a port for the webserver
 EXPOSE 9001
 
-CMD ["gunicorn", "-w 4", "-b 0.0.0.0:9001", "sth:hello_world"]
-
-#CMD python /a/sth.py
-
-
-#kaesjfhauyliaewfjihehiuf
+CMD ["gunicorn", "-w 4", "-b 0.0.0.0:9001", "app:app"]
