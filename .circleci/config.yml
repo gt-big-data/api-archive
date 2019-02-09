@@ -76,17 +76,17 @@ workflows:
           filters:
             branches:
               ignore: 
-                -timmmmmm
+                - rewrite
       - test:
           filters:
             branches:
               ignore: 
-                -timmmmmm
+                - rewrite
       - deploy:
           filters:
             branches:
               ignore: 
-                -timmmmmm
+                - rewrite
           requires:
             - build
             - test
