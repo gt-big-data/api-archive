@@ -75,15 +75,15 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: build
+              ignore: -timmmmmm
       - test:
           filters:
             branches:
-              ignore:
+              ignore: -timmmmmm
       - deploy:
           filters:
             branches:
-              ignore:
+              ignore: -timmmmmm
           #requires:
           # - build
           # - test
