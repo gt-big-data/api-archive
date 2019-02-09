@@ -72,13 +72,21 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               ignore: 
                 -timmmmmm
-      - test
+      - test:
+          filters:
+            branches:
+              ignore: 
+                -timmmmmm
       - deploy:
+          filters:
+            branches:
+              ignore: 
+                -timmmmmm
           requires:
             - build
             - test
