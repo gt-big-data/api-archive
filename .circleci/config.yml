@@ -75,19 +75,18 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: 
-                - rewrite
+              only: 
+                - master
       - test:
           filters:
             branches:
-              ignore: 
-                - rewrite
+              only: 
+                - master
       - deploy:
           filters:
             branches:
-              ignore: 
-                - rewrite
-                - timmmmmm
+              only: 
+                - master
           requires:
             - build
             - test
