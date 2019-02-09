@@ -75,7 +75,7 @@ workflows:
       - build:
           filters:
             branches:
-              ignore:
+              ignore: build
       - test:
           filters:
             branches:
