@@ -78,7 +78,7 @@ workflows:
           requires:
             - build
             - test
-      filters:
+    filters:
         branches:
           ignore:
             -build
