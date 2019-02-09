@@ -73,6 +73,10 @@ workflows:
   build-test-deploy:
     jobs:
       - build
+          filters:
+            branches:
+              ignore: 
+                -timmmmmm
       - test
       - deploy:
           requires:
