@@ -5,10 +5,14 @@ from martapy import BusClient
 import os
 from flask_cors import CORS
 
+
+from test import simple_page
+
 # Make the Flask app and connect the database
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] \
         = 'sqlite:///' + os.path.join(os.getcwd(), "buses.db")
+app.register_blueprint(simple_page)
 CORS(app)
 db = SQLAlchemy(app)
 
