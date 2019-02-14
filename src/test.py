@@ -14,6 +14,7 @@ bus_wrapper = Blueprint('bus_wrapper', __name__,
 #app.config['SQLALCHEMY_DATABASE_URI'] \
 #        = 'sqlite:///' + os.path.join(os.getcwd(), "buses.db")
 #db = SQLAlchemy(app)
+'''
 def get_db_data(route):
     """
     Retrieves all the Bus data from the database and returns it in JSON format
@@ -48,8 +49,8 @@ def get_db_data(route):
         final_list.append(json_dict)
 
     return final_list
-
-
+'''
+'''
 class Bus(db.Model):
     """ Class representing a Bus from the MARTA API and all its attributes """
 
@@ -70,7 +71,7 @@ class Bus(db.Model):
 
     def __repr__(self):
         return '<ID %r>' % self.id
-
+'''
 
 def get_bus_data(route):
     '''
@@ -80,10 +81,18 @@ def get_bus_data(route):
 
     # Makes sure the database has been created for Buses in case the file
     # gets deleted
-    db.create_all()
+    #db.create_all()
 
     # Determines if the database is empty or if the first entry was added
     # more than 5 minutes before
+
+    bus_client = BusClient()
+    buses = bus_client.buses()
+
+    return buses
+
+
+    '''
     if (len(Bus.query.all()) == 0
         or datetime.now() > (Bus.query.all()[0].updated_at
                               + timedelta(minutes = 5))):
@@ -117,7 +126,7 @@ def get_bus_data(route):
         db.session.commit()
 
     return get_db_data(route)
-
+    '''
 
 
 
