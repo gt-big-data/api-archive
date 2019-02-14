@@ -13,7 +13,6 @@ bus_wrapper = Blueprint('bus_wrapper', __name__,
 # Make the Flask app and connect the database
 #app.config['SQLALCHEMY_DATABASE_URI'] \
 #        = 'sqlite:///' + os.path.join(os.getcwd(), "buses.db")
-CORS(app)
 #db = SQLAlchemy(app)
 def get_db_data(route):
     """
