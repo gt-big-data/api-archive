@@ -1,8 +1,4 @@
-from flask import Flask, request, jsonify
-from datetime import datetime, timedelta
-from flask_sqlalchemy import SQLAlchemy
-from martapy import BusClient
-import os
+from flask import Flask
 from flask_cors import CORS
 from test import bus_wrapper 
 
