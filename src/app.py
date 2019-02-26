@@ -12,5 +12,9 @@ app.register_blueprint(census_blueprint)
 
 CORS(app)
 
+@app.route('/')
+def hello_world():
+    return "Hello from the API!"
+
 if __name__ == '__main__':
     app.run()
