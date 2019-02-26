@@ -1,10 +1,16 @@
 from flask import Flask
 from flask_cors import CORS
-from marta.buses.marta_bus_wrapper import bus_wrapper
-from ping.testping import testping
+from buses import bp as buses_blueprint
+from ping import bp as ping_blueprint
+from census import bp as census_blueprint
 
-# Make the Flask app and connect the database
 app = Flask(__name__)
-app.register_blueprint(bus_wrapper)
-app.register_blueprint(testping)
+
+app.register_blueprint(buses_blueprint)
+app.register_blueprint(ping_blueprint)
+app.register_blueprint(census_blueprint)
+
 CORS(app)
+
+if __name__ == '__main__':
+    app.run()
