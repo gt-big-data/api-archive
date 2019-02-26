@@ -1,17 +1,13 @@
 workflows:
   version: 2
-  build-test-deploy:
+  build-deploy:
     jobs:
       - build
-      - test
+      # - test
       - deploy:
-          filters:
-            branches:
-              only: 
-                - master
           requires:
             - build
-            - test
+            # - test
 
 version: 2
 jobs:
@@ -35,23 +31,23 @@ jobs:
           root: workspace
           paths:
             - api.tar
-  test:
-    docker:
-      - image: python:3.7
-    steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: pip install -r requirements.txt
-      - run:
-          name: Run Tests
-          command: true #pytest -W ignore::DeprecationWarning
-      - run:
-          name: Check coverage
-          command: |
-            coverage run src/*.py
-            coverage report
-            codecov
+  # test:
+  #   docker:
+  #     - image: python:3.7
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install Dependencies
+  #         command: pip install -r requirements.txt
+  #     - run:
+  #         name: Run Tests
+  #         command: pytest -W ignore::DeprecationWarning
+  #     - run:
+  #         name: Check coverage
+  #         command: |
+  #           coverage run src/*.py
+  #           coverage report
+  #           codecov
   deploy:
     docker:
       - image: google/cloud-sdk:latest
